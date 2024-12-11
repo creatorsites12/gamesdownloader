@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат с ботом</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        #chat-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        #messages {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .message {
+            margin: 10px 0;
+        }
+        .bot-message {
+            color: blue;
+        }
+        .user-message {
+            color: green;
+            text-align: right;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .download-button {
+            background-color: #007bff;
+            color: white;
+        }
+        .link-button {
+            background-color: #28a745;
+            color: white;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat-container">
+    <h2>Чат с ботом</h2>
+    <div id="messages"></div>
+    <div id="download-buttons">
+        <h3>Выберите игру для скачивания:</h3>
+        <button class="download-button" onclick="downloadGame('Subway Surfers', 'https://www.mediafire.com/file/f3wspn8ebi8lxh9/subway-surfers-3.39.0-vzlom.apk/file')">Subway Surfers</button>
+    </div>
+</div>
+
+<script>
+    function addMessage(message, className) {
+        const messagesDiv = document.getElementById('messages');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message ' + className;
+        messageDiv.innerHTML = message; // Используем innerHTML для добавления HTML
+        messagesDiv.appendChild(messageDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Прокрутка вниз
+    }
+
+    function downloadGame(gameName, downloadLink) {
+        alert(`Вы выбрали скачать ${gameName}.`);
+        addMessage(`Вы выбрали скачать ${gameName}.`, 'user-message');
+        
+        // Добавляем кнопку "Скачать здесь"
+        const buttonHTML = `<button class="link-button" onclick="window.open('${downloadLink}', '_blank')">Скачать ${gameName}</button>`;
+        addMessage(buttonHTML, 'bot-message');
+    }
+</script>
+
+</body>
+</html>
